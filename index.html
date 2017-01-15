@@ -16,14 +16,20 @@ window.onload = function() {
 		dstpos.lng = hash.substring(n + 1);
 	}
 	get("link").textContent = "現在位置計測中...";
-	navigator.geolocation.getCurrentPosition(function(pos) {
-		srcpos.lat = pos.coords.latitude;
-		srcpos.lng = pos.coords.longitude;
-//		dump(currentpos);
-		show(true);
-	}, function() {	// err
+	try {
+		navigator.geolocation.getCurrentPosition(function(pos) {
+			srcpos.lat = pos.coords.latitude;
+			srcpos.lng = pos.coords.longitude;
+	//		dump(currentpos);
+			show(true);
+		}, function(err) {	// err
+			console.log("GPS err: " + err.message);
+			show(false);
+		});
+	} catch (e) {
+		console.log("GPS err: " + e);
 		show(false);
-	});
+	}
 };
 var show = function(gps) {
 	var s = "※現在位置から、";
