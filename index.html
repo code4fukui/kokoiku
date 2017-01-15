@@ -1,0 +1,117 @@
+<!DOCTYPE html><html><head><meta charset='utf-8'/>
+<title>ココイク kokoiku - お手軽場所案内</title>
+<meta property="og:image" content="kokoiku.png">
+<link rel="apple-touch-icon" href="kokoiku.png"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<script src="fukuno.js"></script>
+<script>"use strict";
+var srcpos = { lat: 35.9433, lng: 136.1885　}; // デフォルト 鯖江駅
+var dstpos = { lat: 35.950908, lng: 136.180781　}; // デフォルト 鯖江西山公園レッサーパンダ
+
+window.onload = function() {
+	var hash = document.location.hash;
+	if (hash.length > 0) {
+		var n = hash.indexOf(',');
+		dstpos.lat = hash.substring(1, n);
+		dstpos.lng = hash.substring(n + 1);
+	}
+	get("link").textContent = "現在位置計測中...";
+	navigator.geolocation.getCurrentPosition(function(pos) {
+		srcpos.lat = pos.coords.latitude;
+		srcpos.lng = pos.coords.longitude;
+//		dump(currentpos);
+		show(true);
+	}, function() {	// err
+		show(false);
+	});
+};
+var show = function(gps) {
+	var s = "※現在位置から、";
+	if (!gps) {
+		s = "※鯖江駅から、";
+	}
+	s += "緯度" + dstpos.lat + "度、経度" + dstpos.lng + "度までの経路を求めるボタンです";
+	get("desc").textContent = s;
+	get("link").textContent = "ココイク";
+	get("link").href = getDirections(srcpos.lat, srcpos.lng, dstpos.lat, dstpos.lng);
+	get("link").style.backgroundColor = "orange";
+};
+var getDirections = function(lat1, lng1, lat2, lng2) {
+	return "https://www.google.com/maps/dir/" + lat1 + "," + lng1 + "/" + lat2 + "," + lng2;
+};
+</script>
+<style>
+body {
+	margin: 0px;
+	text-align: center;
+	word-break: break-all;
+}
+#link {
+	font-size: 150%;
+	color: #444 !important;
+	background-color: #aaa;
+	margin: 4em 0em 2em 0em;
+	width: 50%;
+	padding: 2em 1em;
+}
+#desc {
+	height: 4em;
+	vertical-align: top;
+	padding: 2em;
+	font-size: 90%;
+	color: #333;
+}
+.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 4px rgba(0,0,0,.5);
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.5);
+	box-shadow: 0 1px 4px rgba(0,0,0,.5);
+}
+.button:hover {
+	text-decoration: none;
+}
+.button:active {
+	position: relative;
+	top: 1px;
+}
+.src a {
+	color: gray !important;
+}
+.src {
+	margin: 10px;
+	font-size: 80%;
+	text-align: left;
+}
+</style>
+</head>
+<body>
+
+<a class=button id=link>ココイク</a>
+
+<div id=desc></div>
+
+<div class="src">
+「ココイク」<br>
+ココイクボタンの設置は簡単です。<br>
+緯度経度を http://codeforfukui.github.io/kokoiku/# の後にコンマ区切りでつなげて、リンクしてください。<br>
+<br>
+サンプル１ (リンクをメールやメッセージで送る)<br>
+			<a href=http://codeforfukui.github.io/kokoiku/#35.937525,136.171508 target=_blank>http://codeforfukui.github.io/kokoiku/#35.937525,136.171508</a> (福井高専電子情報工学科棟入口)<br>
+<br>
+サンプル２ （Webサイト内にリンクをつける）<br>
+&lt;a href="<a href=http://codeforfukui.github.io/kokoiku/#35.950908,136.180781 target=_blank>http://codeforfukui.github.io/kokoiku/#35.950908,136.180781</a>" target=_blank&gt;鯖江のレッサーパンダに会いに行く&lt;/a&gt;<br>
+<br>
+アプリ：<a href=https://creativecommons.org/licenses/by/2.1/jp/ target=_blank>CC BY</a> <a href=http://fukuno.jig.jp/784 target=_blank>福野泰介 一日一創</a><br>
+</div>
+
+</body>
+</html>
