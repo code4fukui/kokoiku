@@ -20,7 +20,7 @@ window.onload = function() {
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			srcpos.lat = pos.coords.latitude;
 			srcpos.lng = pos.coords.longitude;
-	//		dump(currentpos);
+			dump(currentpos);
 			show(true);
 		}, function(err) {	// err
 			console.log("GPS err: " + err.message);
@@ -108,13 +108,13 @@ body {
 <div class="src">
 「ココイク」<br>
 ココイクボタンの設置は簡単です。<br>
-緯度経度を http://codeforfukui.github.io/kokoiku/# の後にコンマ区切りでつなげて、リンクしてください。<br>
+緯度経度を https://codeforfukui.github.io/kokoiku/# の後にコンマ区切りでつなげて、リンクしてください。<br>
 <br>
 サンプル１ (リンクをメールやメッセージで送る)<br>
-			<a href=http://codeforfukui.github.io/kokoiku/#35.937525,136.171508 target=_blank>http://codeforfukui.github.io/kokoiku/#35.937525,136.171508</a> (福井高専電子情報工学科棟入口)<br>
+<a href=https://codeforfukui.github.io/kokoiku/#35.937525,136.171508 target=_blank>https://codeforfukui.github.io/kokoiku/#35.937525,136.171508</a> (福井高専電子情報工学科棟入口)<br>
 <br>
 サンプル２ （Webサイト内にリンクをつける）<br>
-&lt;a href="<a href=http://codeforfukui.github.io/kokoiku/#35.950908,136.180781 target=_blank>http://codeforfukui.github.io/kokoiku/#35.950908,136.180781</a>" target=_blank&gt;鯖江のレッサーパンダに会いに行く&lt;/a&gt;<br>
+&lt;a href="<a href=https://codeforfukui.github.io/kokoiku/#35.950908,136.180781 target=_blank>https://codeforfukui.github.io/kokoiku/#35.950908,136.180781</a>" target=_blank&gt;鯖江のレッサーパンダに会いに行く&lt;/a&gt;<br>
 <br>
 アプリ：<a href=https://creativecommons.org/licenses/by/2.1/jp/ target=_blank>CC BY</a> <a href=http://fukuno.jig.jp/784 target=_blank>福野泰介 一日一創</a><br>
 </div>
