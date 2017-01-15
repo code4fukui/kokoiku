@@ -20,7 +20,7 @@ window.onload = function() {
 		navigator.geolocation.getCurrentPosition(function(pos) {
 			srcpos.lat = pos.coords.latitude;
 			srcpos.lng = pos.coords.longitude;
-			dump(currentpos);
+//			dump(pos);
 			show(true);
 		}, function(err) {	// err
 			console.log("GPS err: " + err.message);
