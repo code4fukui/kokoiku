@@ -1,4 +1,7 @@
 # kokoiku
+
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 A simple guide to your current location.
 
 ## Demo
